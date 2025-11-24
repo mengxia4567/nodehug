@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
+    <title>我的涂鸦本 - My Doodle Space</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入手写字体，更有涂鸦感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,29 +16,39 @@
         }
 
         :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
+            /* 配色改为：素描纸米色、墨水黑、铅笔灰、强调色用马克笔红 */
+            --primary: #2c3e50;      /* 墨水蓝黑 */
+            --secondary: #34495e;    /* 深灰 */
+            --accent: #e74c3c;       /* 鲜艳的红色/橙色，像批改或重点标记 */
+            --light: #f9f7f1;        /* 米黄色画纸质感 */
+            --dark: #1a252f;
             --text: #333333;
             --white: #ffffff;
+        }
+
+        /* 为标题应用手写字体 */
+        h1, h2, h3, .logo span, .handwritten {
+            font-family: 'Indie Flower', cursive;
         }
 
         body {
             background-color: var(--light);
             color: var(--text);
             line-height: 1.6;
+            /* 添加一点纸张纹理的感觉 */
+            background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
         header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
+            background: var(--white);
+            color: var(--primary);
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-bottom: 3px solid var(--primary);
         }
 
         .container {
@@ -55,12 +67,15 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
+            color: var(--primary);
         }
 
         .logo i {
-            font-size: 2rem;
+            font-size: 1.8rem;
+            color: var(--accent);
+            transform: rotate(-15deg);
         }
 
         nav ul {
@@ -73,27 +88,33 @@
         }
 
         nav ul li a {
-            color: var(--white);
+            color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             padding: 0.5rem 0;
             position: relative;
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.3rem;
         }
 
         nav ul li a:hover {
             color: var(--accent);
         }
 
+        /* 导航栏下划线改为波浪线或涂鸦感 */
         nav ul li a::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background-color: var(--accent);
             transition: width 0.3s ease;
+            border-radius: 10px;
+            transform: rotate(-2deg);
         }
 
         nav ul li a:hover::after {
@@ -101,182 +122,239 @@
         }
 
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
+            /* 背景图改为艺术相关的 */
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.5)), url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80');
             background-size: cover;
             background-position: center;
-            height: 80vh;
+            height: 85vh;
             display: flex;
             align-items: center;
             text-align: center;
             color: var(--white);
+            position: relative;
+        }
+        
+        /* 给Hero加个边框 */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to top left, var(--light) 49%, transparent 51%);
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            background: rgba(0,0,0,0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 4.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 0px var(--accent);
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-bottom: 2rem;
+            font-weight: 300;
         }
 
         .btn {
             display: inline-block;
             background-color: var(--accent);
             color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
+            padding: 0.8rem 2.5rem;
+            border-radius: 2px; /* 方一点，像便签 */
             text-decoration: none;
             font-weight: 600;
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.4rem;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 4px 4px 0px var(--primary);
+            transform: rotate(-2deg);
         }
 
         .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            background-color: var(--white);
+            color: var(--accent);
+            transform: translateY(-3px) rotate(0deg);
+            box-shadow: 6px 6px 0px var(--primary);
         }
 
         section {
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             color: var(--primary);
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
         }
 
+        /* 标题装饰改为涂鸦线条 */
         .section-title h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
+            width: 120px;
+            height: 8px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 25 20 50 10 T 100 10' stroke='%23e74c3c' fill='none' stroke-width='4'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: transparent;
         }
 
         .section-title p {
-            color: var(--text);
+            color: var(--secondary);
             max-width: 700px;
             margin: 0 auto;
+            font-size: 1.2rem;
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
         }
 
         .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            padding: 10px;
+            background: white;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-img:hover {
+            transform: rotate(0deg) scale(1.02);
         }
 
         .about-img img {
             width: 100%;
             height: auto;
             display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
+            border: 1px solid #eee;
         }
 
         .about-text h3 {
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            color: var(--dark);
+            color: var(--primary);
         }
 
         .about-text p {
             margin-bottom: 1.5rem;
+            font-size: 1.1rem;
         }
 
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .stat-item {
             text-align: center;
             padding: 2rem 1rem;
             background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 2px solid var(--primary);
+            border-radius: 5px 25px 5px 25px; /* 不规则圆角 */
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
 
         .stat-item:hover {
-            transform: translateY(-10px);
+            transform: translate(-5px, -5px);
+            box-shadow: 13px 13px 0 rgba(0,0,0,0.1);
         }
 
         .stat-item i {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: var(--accent);
             margin-bottom: 1rem;
         }
 
         .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
+            font-size: 3rem;
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
         .stat-item p {
-            color: var(--text);
+            color: var(--secondary);
+            font-weight: 600;
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.4rem;
         }
 
         .initiatives {
-            background-color: var(--white);
+            background-color: #fff;
+            border-top: 2px dashed var(--secondary);
+            border-bottom: 2px dashed var(--secondary);
         }
 
         .initiatives-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .initiative-card {
             background-color: var(--light);
-            border-radius: 10px;
+            border: 1px solid #ddd;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        /* 胶带效果 */
+        .initiative-card::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 10;
         }
 
         .initiative-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .initiative-img {
-            height: 200px;
+            height: 250px;
             overflow: hidden;
+            border-bottom: 2px solid var(--primary);
         }
 
         .initiative-img img {
@@ -284,60 +362,93 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
+            filter: grayscale(30%); /* 稍微降低饱和度，复古感 */
         }
 
         .initiative-card:hover .initiative-img img {
             transform: scale(1.1);
+            filter: grayscale(0%);
         }
 
         .initiative-content {
             padding: 1.5rem;
+            text-align: center;
         }
 
         .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
         }
 
         .initiative-content p {
             margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* 按钮变小一点用于卡片 */
+        .initiative-content .btn {
+            padding: 0.5rem 1.5rem;
+            font-size: 1.1rem;
+            box-shadow: 2px 2px 0 var(--primary);
         }
 
         .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background-color: var(--primary);
             color: var(--white);
             text-align: center;
             padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 增加一些背景涂鸦装饰 */
+        .cta::before {
+            content: '\f303';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            font-size: 10rem;
+            opacity: 0.05;
+            color: var(--white);
+            transform: rotate(-15deg);
         }
 
         .cta h2 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            color: var(--light);
         }
 
         .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            color: #ccc;
         }
 
         .cta .btn {
             background-color: var(--white);
             color: var(--primary);
+            box-shadow: 4px 4px 0 var(--accent);
         }
 
         .cta .btn:hover {
             background-color: var(--accent);
             color: var(--white);
+            box-shadow: 6px 6px 0 var(--white);
         }
 
         footer {
             background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
+            color: #bbb;
+            padding: 4rem 0 1rem;
+            border-top: 5px solid var(--accent);
         }
 
         .footer-content {
@@ -348,38 +459,9 @@
         }
 
         .footer-column h3 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
+            color: var(--white);
         }
 
         .footer-links li a:hover {
@@ -387,39 +469,25 @@
             padding-left: 5px;
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
         .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
             background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
             color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
         }
 
         .social-links a:hover {
             background-color: var(--accent);
-            transform: translateY(-5px);
+            transform: rotate(10deg);
         }
-
+        
         .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .mobile-menu {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
+            color: var(--primary);
         }
 
         @media (max-width: 992px) {
@@ -442,35 +510,18 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
+                font-size: 3rem;
             }
             
             nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                background-color: var(--white);
+                border-bottom: 2px solid var(--primary);
             }
             
-            nav ul.active {
-                display: flex;
+            nav ul li a {
+                color: var(--primary);
             }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
+
             .mobile-menu {
                 display: block;
             }
@@ -487,11 +538,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
     </style>
 </head>
 <body>
@@ -499,19 +545,18 @@
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
+                <i class="fas fa-pencil-alt"></i>
+                <span>Doodle.Verse</span>
             </div>
             <nav>
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我</a></li>
+                    <li><a href="#gallery">画廊</a></li>
+                    <li><a href="#contact">约稿</a></li>
                 </ul>
             </nav>
         </div>
@@ -520,9 +565,9 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+            <h1>脑洞大开，<br>笔下生花</h1>
+            <p>欢迎来到我的个人涂鸦小站。这里记录了我的奇思妙想、日常生活和梦境碎片。</p>
+            <a href="#gallery" class="btn">看我的画 <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
@@ -530,82 +575,86 @@
     <section id="about">
         <div class="container">
             <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
+                <h2>我是谁？</h2>
+                <p>一个热爱用线条和色彩捕捉世界的自由插画师。</p>
             </div>
             <div class="about-content">
                 <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
+                    <!-- 替换为手绘/艺术相关图片 -->
+                    <img src="https://images.unsplash.com/photo-1515041219749-b934c97d1bf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="我的桌面">
                 </div>
                 <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <h3>不仅是乱涂乱画</h3>
+                    <p>你好！我是 Alex。从 5 岁那年第一次在墙上乱涂乱画开始，我就没停下过手中的笔。</p>
+                    <p>这个网站展示了我过去几年的作品积累，包括速写本里的随笔、iPad 上的数字插画，以及一些未完成的草图。</p>
+                    <p>我相信每一幅涂鸦都有它自己的生命。我不追求完美的线条，只追求真实的表达。带上一杯咖啡，一起来看看我的世界吧。</p>
+                    <a href="#" class="btn">了解更多故事</a>
                 </div>
             </div>
             <div class="stats">
                 <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
+                    <i class="fas fa-book-open"></i>
+                    <h3 class="counter" data-target="45">0</h3>
+                    <p>画满的速写本</p>
                 </div>
                 <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
+                    <i class="fas fa-pencil-ruler"></i>
+                    <h3 class="counter" data-target="1200">0</h3>
+                    <p>消耗的铅笔</p>
                 </div>
                 <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
+                    <i class="fas fa-coffee"></i>
+                    <h3 class="counter" data-target="850">0</h3>
+                    <p>创作时的咖啡</p>
                 </div>
                 <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
+                    <i class="fas fa-heart"></i>
+                    <h3 class="counter" data-target="300">0</h3>
+                    <p>完成的作品</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
+    <!-- Gallery Section (Originally Initiatives) -->
+    <section class="initiatives" id="gallery">
         <div class="container">
             <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+                <h2>作品分类</h2>
+                <p>无论是黑白线稿还是全彩插画，这里都有。</p>
             </div>
             <div class="initiatives-grid">
                 <div class="initiative-card">
                     <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
+                        <!-- 角色设计/素描图 -->
+                        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1919&q=80" alt="角色素描">
                     </div>
                     <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <h3>角色设计</h3>
+                        <p>原创角色、同人图以及人物动态速写。探索不同性格与表情的刻画。</p>
+                        <a href="#" class="btn">查看系列</a>
                     </div>
                 </div>
                 <div class="initiative-card">
                     <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
+                        <!-- 城市速写/风景 -->
+                        <img src="https://images.unsplash.com/photo-1544257750-572358f550ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=2017&q=80" alt="城市速写">
                     </div>
                     <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <h3>城市速写</h3>
+                        <p>带着画板走街串巷，记录城市角落的烟火气与建筑的线条美。</p>
+                        <a href="#" class="btn">查看系列</a>
                     </div>
                 </div>
                 <div class="initiative-card">
                     <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
+                        <!-- 抽象/涂鸦 -->
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="创意插画">
                     </div>
                     <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <h3>脑洞插画</h3>
+                        <p>基于梦境或随机灵感的数字绘画，色彩更丰富，想象更狂野。</p>
+                        <a href="#" class="btn">查看系列</a>
                     </div>
                 </div>
             </div>
@@ -613,57 +662,55 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta" id="get-involved">
+    <section class="cta" id="contact">
         <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+            <h2>喜欢我的风格？</h2>
+            <p>如果你有有趣的项目想合作，或者只是想聊聊绘画心得，欢迎随时联系我。</p>
+            <a href="#" class="btn"><i class="fas fa-envelope"></i> 发送邮件</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
+                    <h3>Doodle.Verse</h3>
+                    <p>记录生活，描绘梦想。每一笔都是一次新的冒险。</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h3>Quick Links</h3>
+                    <h3>快速导航</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于作者</a></li>
+                        <li><a href="#gallery">作品展示</a></li>
+                        <li><a href="#shop">周边商店</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Our Programs</h3>
+                    <h3>常用工具</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
+                        <li><a href="#">Procreate</a></li>
+                        <li><a href="#">Photoshop</a></li>
+                        <li><a href="#">传统水彩</a></li>
+                        <li><a href="#">三菱针管笔</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
+                    <h3>联系方式</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 你的城市, 艺术街区 404号</p>
+                    <p><i class="fas fa-comment"></i> 微信: ArtDoodle_01</p>
+                    <p><i class="fas fa-envelope"></i> hello@doodleverse.com</p>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+                <p>&copy; 2025 Doodle Verse. 版权所有，翻版必究。</p>
             </div>
         </div>
     </footer>
@@ -671,52 +718,83 @@
     <script>
         // Mobile Menu Toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+            
+            // 简单的移动端菜单样式补丁
+            if(nav.classList.contains('active')) {
+                nav.style.display = 'flex';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.left = '0';
+                nav.style.width = '100%';
+                nav.style.flexDirection = 'column';
+                nav.style.padding = '1rem';
+                nav.style.zIndex = '99';
+                nav.style.textAlign = 'center';
+            } else {
+                nav.style.display = '';
+            }
         });
 
         // Counter Animation
         function animateCounters() {
             const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
+            const speed = 100; 
             
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
                 
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+                    
+                    if(count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
             });
         }
 
         // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
+        // 使用 IntersectionObserver 在元素进入视口时才开始动画
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    animateCounters();
+                    observer.disconnect(); // 只运行一次
+                }
+            });
+        });
+        
+        document.querySelectorAll('.stats').forEach(section => {
+            observer.observe(section);
+        });
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 if(targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
+                    // Close mobile menu if open
                     document.querySelector('nav ul').classList.remove('active');
+                    if(window.innerWidth <= 768) {
+                        document.querySelector('nav ul').style.display = '';
+                    }
                 }
             });
         });
     </script>
 </body>
-
 </html>
