@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的涂鸦本 - My Doodle Space</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 引入手写字体，更有涂鸦感 -->
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -481,6 +480,8 @@
         
         .copyright {
             border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            padding-top: 1rem;
         }
 
         .mobile-menu {
@@ -489,6 +490,8 @@
             cursor: pointer;
             color: var(--primary);
         }
+        
+        /* ============== 媒体查询 - 响应式设计 ============== */
 
         @media (max-width: 992px) {
             .about-content {
@@ -513,17 +516,47 @@
                 font-size: 3rem;
             }
             
-            nav ul {
-                background-color: var(--white);
-                border-bottom: 2px solid var(--primary);
+            /* 移动端 Logo 和 汉堡菜单并列显示 */
+            .nav-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
             
-            nav ul li a {
-                color: var(--primary);
+            nav ul {
+                /* 默认隐藏菜单，并设置其在 Header 下方的全宽位置 */
+                display: none;
+                position: absolute;
+                top: 100%; /* 位于 Header 下方 */
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--white);
+                border-bottom: 2px solid var(--primary);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                padding: 1rem 0;
             }
 
-            .mobile-menu {
+            /* 激活状态：当添加 active 类时显示菜单 (CSS 控制显示) */
+            nav ul.active {
+                display: flex; 
+            }
+
+            nav ul li {
+                margin: 0.5rem 0; /* 垂直排列 */
+                text-align: center;
+                width: 100%;
+            }
+
+            nav ul li a {
+                color: var(--primary);
+                padding: 0.75rem 1rem;
                 display: block;
+            }
+
+            /* 移动端显示汉堡包图标 */
+            .mobile-menu {
+                display: block; 
             }
             
             .initiatives-grid {
@@ -541,7 +574,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container nav-container">
             <div class="logo">
@@ -562,7 +594,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
             <h1>脑洞大开，<br>笔下生花</h1>
@@ -571,7 +602,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <div class="container">
             <div class="section-title">
@@ -580,7 +610,6 @@
             </div>
             <div class="about-content">
                 <div class="about-img">
-                    <!-- 替换为手绘/艺术相关图片 -->
                     <img src="https://images.unsplash.com/photo-1515041219749-b934c97d1bf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="我的桌面">
                 </div>
                 <div class="about-text">
@@ -616,7 +645,6 @@
         </div>
     </section>
 
-    <!-- Gallery Section (Originally Initiatives) -->
     <section class="initiatives" id="gallery">
         <div class="container">
             <div class="section-title">
@@ -626,7 +654,6 @@
             <div class="initiatives-grid">
                 <div class="initiative-card">
                     <div class="initiative-img">
-                        <!-- 角色设计/素描图 -->
                         <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1919&q=80" alt="角色素描">
                     </div>
                     <div class="initiative-content">
@@ -637,7 +664,6 @@
                 </div>
                 <div class="initiative-card">
                     <div class="initiative-img">
-                        <!-- 城市速写/风景 -->
                         <img src="https://images.unsplash.com/photo-1544257750-572358f550ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=2017&q=80" alt="城市速写">
                     </div>
                     <div class="initiative-content">
@@ -648,7 +674,6 @@
                 </div>
                 <div class="initiative-card">
                     <div class="initiative-img">
-                        <!-- 抽象/涂鸦 -->
                         <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="创意插画">
                     </div>
                     <div class="initiative-content">
@@ -661,7 +686,6 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta" id="contact">
         <div class="container">
             <h2>喜欢我的风格？</h2>
@@ -670,7 +694,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -690,7 +713,7 @@
                         <li><a href="#home">首页</a></li>
                         <li><a href="#about">关于作者</a></li>
                         <li><a href="#gallery">作品展示</a></li>
-                        <li><a href="#shop">周边商店</a></li>
+                        <li><a href="#">周边商店</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -719,28 +742,14 @@
         // Mobile Menu Toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             const nav = document.querySelector('nav ul');
-            nav.classList.toggle('active');
-            
-            // 简单的移动端菜单样式补丁
-            if(nav.classList.contains('active')) {
-                nav.style.display = 'flex';
-                nav.style.position = 'absolute';
-                nav.style.top = '100%';
-                nav.style.left = '0';
-                nav.style.width = '100%';
-                nav.style.flexDirection = 'column';
-                nav.style.padding = '1rem';
-                nav.style.zIndex = '99';
-                nav.style.textAlign = 'center';
-            } else {
-                nav.style.display = '';
-            }
+            // 优化：只切换 'active' 类名，CSS 负责所有样式和布局
+            nav.classList.toggle('active'); 
         });
 
         // Counter Animation
         function animateCounters() {
             const counters = document.querySelectorAll('.counter');
-            const speed = 100; 
+            const speed = 100; // 动画速度 
             
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
@@ -760,8 +769,7 @@
             });
         }
 
-        // Initialize counters when page loads
-        // 使用 IntersectionObserver 在元素进入视口时才开始动画
+        // Initialize counters using IntersectionObserver (性能优化)
         let observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
@@ -781,16 +789,19 @@
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if(targetId === '#') return;
+
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
+                    // 滚动到目标位置，减去 Header 的高度 (约 80px)
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    // Close mobile menu if open
-                    document.querySelector('nav ul').classList.remove('active');
-                    if(window.innerWidth <= 768) {
-                        document.querySelector('nav ul').style.display = '';
+
+                    // 滚动后关闭移动菜单 (如果已打开)
+                    const navUl = document.querySelector('nav ul');
+                    if (navUl.classList.contains('active')) {
+                        navUl.classList.remove('active');
                     }
                 }
             });
