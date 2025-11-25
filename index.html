@@ -686,11 +686,89 @@
         </div>
     </section>
 
-    <section class="cta" id="contact">
+    <section class="initiatives" id="gallery">
         <div class="container">
-            <h2>喜欢我的风格？</h2>
-            <p>如果你有有趣的项目想合作，或者只是想聊聊绘画心得，欢迎随时联系我。</p>
-            <a href="#" class="btn"><i class="fas fa-envelope"></i> 发送邮件</a>
+            <div class="section-title">
+                <h2>作品分类</h2>
+                <p>无论是黑白线稿还是全彩插画，这里都有。</p>
+            </div>
+            <div class="initiatives-grid">
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1919&q=80" alt="角色素描">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>角色设计</h3>
+                        <p>原创角色、同人图以及人物动态速写。探索不同性格与表情的刻画。</p>
+                        <a href="#" class="btn">查看系列</a>
+                    </div>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="https://images.unsplash.com/photo-1544257750-572358f550ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=2017&q=80" alt="城市速写">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>城市速写</h3>
+                        <p>带着画板走街串巷，记录城市角落的烟火气与建筑的线条美。</p>
+                        <a href="#" class="btn">查看系列</a>
+                    </div>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="创意插画">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>脑洞插画</h3>
+                        <p>基于梦境或随机灵感的数字绘画，色彩更丰富，想象更狂野。</p>
+                        <a href="#" class="btn">查看系列</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI涂鸦图片展示+说明 -->
+            <div class="section-title" style="margin-top:4rem;">
+                <h2>AI生成涂鸦新作</h2>
+                <p>部分涂鸦由人工智能模型生成，灵感与技术并存！</p>
+            </div>
+            <div class="doodle-gallery" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;">
+                <div class="doodle-item" style="background:#fff;padding:1rem;border-radius:10px;">
+                    <img src="https://cdn.doodleverse.com/ai-doodle-1.jpg" alt="AI涂鸦1" style="width:100%;border-radius:8px;box-shadow:2px 4px 16px rgba(52,73,94,0.08)">
+                    <div class="doodle-info" style="padding:0.5rem 0;">
+                        <p style="font-size:1rem;color:#444;"><strong>AI生成：</strong>由 Stable Diffusion 创作。关键词：“梦境、森林、童话”，参数：DDIM steps 30，后用Photoshop简单修饰。</p>
+                    </div>
+                </div>
+                <div class="doodle-item" style="background:#fff;padding:1rem;border-radius:10px;">
+                    <img src="https://cdn.doodleverse.com/ai-doodle-2.jpg" alt="AI涂鸦2" style="width:100%;border-radius:8px;box-shadow:2px 4px 16px rgba(52,73,94,0.08)">
+                    <div class="doodle-info" style="padding:0.5rem 0;">
+                        <p style="font-size:1rem;color:#444;"><strong>AI生成：</strong>使用 MidJourney，Prompt：“Fireflies in an autumn meadow, dreamy style”，参数：--v 4，微调细节并手绘上色。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI整体说明 -->
+            <div class="ai-description" style="background:#fff9f2;padding:1.5rem 2rem;border-radius:8px;margin:2rem 0 0;">
+                <h3 style="color:#e74c3c; font-family:'Indie Flower',cursive;">关于AI创作说明</h3>
+                <p style="color:#333;font-size:1.05rem">
+                  gallery画廊的部分涂鸦通过AI（Stable Diffusion、MidJourney等）辅助生成，包含自动文本生成图像、风格微调与人工后期修饰。流程：输入描述词、运行AI模型、调参数、后期精修。如果你对AI绘画感兴趣，欢迎交流技术和心得！
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI视频演示新板块 -->
+    <section id="video" style="padding:4rem 0;background:#f9f7f1;">
+        <div class="container section-title">
+            <h2>AI生成过程演示</h2>
+            <p>从灵感到成品，AI辅助绘画的全流程演示。</p>
+            <div style="max-width:700px;margin:auto;">
+                <video controls poster="https://cdn.doodleverse.com/video-cover.jpg" style="width:100%;border-radius:6px;border:2px solid #e74c3c;">
+                    <source src="https://cdn.doodleverse.com/ai-process-demo.mp4" type="video/mp4">
+                    当前浏览器不支持video标签。
+                </video>
+                <div style="margin-top:1rem;color:#555;font-size:1.05rem;">
+                    <p>演示内容：Stable Diffusion 输入关键词生成作品，MidJourney二次风格微调，最后用Photoshop进行人工润色和细节补充，帮助将创意转化为可分享的数字艺术。</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -809,3 +887,4 @@
     </script>
 </body>
 </html>
+
